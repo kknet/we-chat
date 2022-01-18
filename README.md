@@ -16,6 +16,9 @@
 2.  Android Studio
 3.  安卓虚拟机
 
+#### t-im链接
+https://gitee.com/mxd_2022/t-im
+
 #### 参与贡献
 
 1.  Fork 本仓库
