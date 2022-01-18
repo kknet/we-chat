@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <include layout="@layout/common_titlebar" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/user_detail"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+    <xyz.mxd.wechat.widget.EaseImageView
+        android:id="@+id/avatar_user"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="22dp"
+        android:scaleType="fitXY"
+        app:ease_shape_type="round"
+        android:src="@mipmap/ic_head_default_right" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/avatar_user"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="12dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        tools:text="测试"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/bottom_line"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_detail"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="?android:attr/windowBackground"/>
+<!--    -->
+
+    <TextView
+        android:id="@+id/tv_note"
+        android:layout_width="0dp"
+        android:layout_height="66dp"
+        android:text="设置备注"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bottom_line"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:textSize="14sp"
+        android:textColor="#000000"
+        android:background="#FFFFFF"
+        android:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/iv_skip"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        app:layout_constraintTop_toBottomOf="@id/bottom_line"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="29dp"
+        android:layout_marginRight="21dp"
+        android:src="@drawable/em_arrow_right"
+        android:tint="@color/black" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_note"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#fff2f2f2"/>
+
+    <TextView
+        android:id="@+id/btn_chat"
+        android:text="发消息"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_note"
+        android:layout_marginTop="24dp"
+        style="@style/em_friends_contact_detail_tv" />
+
+    <TextView
+        android:id="@+id/btn_voice"
+        android:text="语音通话"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_chat"
+        android:layout_marginTop="10dp"
+        style="@style/em_friends_contact_detail_tv"/>
+
+    <TextView
+        android:id="@+id/btn_video"
+        android:text="视频通话"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_voice"
+        android:layout_marginTop="10dp"
+        style="@style/em_friends_contact_detail_tv"/>
+
+
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_friend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="iv_skip,btn_chat,btn_video,btn_voice"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

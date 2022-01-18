@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00897B</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+
+    <color name="qipao_send">#FFFFFF</color>
+    <color name="em_color_common_text_black">#ff333333</color>
+    <color name="em_color_common_text_gray">#ff999999</color>
+    <color name="gray">#ffe9e9e9</color>
+    <color name="character_bg">#ffe9e9e9</color>
+
+
+    <color name="input_dvier">#D8D8D8</color>
+    <color name="input_dvier_focus">#1BB879</color>
+    <color name="loginButtonText">#B5B2B2</color>
+    <color name="loginButtonTextFouse">#FFFFFF</color>
+    <color name="loginButtonBackgroundFouse">#07C160</color>
+    <color name="loginButtonBackgroundNotFouse">#D4D8D5</color>
+    <color name="title">#EDEDED</color>
+    <color name="loginText">#5A5959</color>
+    <color name="textColorHint">#DDDDDD</color>
+
+
+    <color name="massageLogin">#5A6A8B</color>
+    <color name="login_dvier">#BEBEBE</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <declare-styleable name="SideBar">
+        <attr name="scaleSize" format="integer"/>
+        <attr name="scaleItemCount" format="integer"/>
+        <attr name="scaleWidth" format="dimension"/>
+    </declare-styleable>
+</resources>

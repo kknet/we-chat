@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="IndicatorView">
+        <attr name="indicatorColor" format="color"/>
+        <attr name="indicatorColorSelected" format="color"/>
+        <attr name="indicatorWidth" format="integer"/>
+        <attr name="gravity" format="integer"/>
+    </declare-styleable>
+
+
+
+    <declare-styleable name="IMStateButton">
+
+        <!--text color-->
+        <attr name="normalTextColor" format="color|reference"/>
+        <attr name="pressedTextColor" format="color|reference"/>
+        <attr name="unableTextColor" format="color|reference"/>
+
+        <!--stroke width and color, dash width, dash gap-->
+        <attr name="strokeDashWidth" format="dimension|reference"/>
+        <attr name="strokeDashGap" format="dimension|reference"/>
+        <attr name="normalStrokeWidth" format="dimension|reference"/>
+        <attr name="pressedStrokeWidth" format="dimension|reference"/>
+        <attr name="unableStrokeWidth" format="dimension|reference"/>
+        <attr name="normalStrokeColor" format="color|reference"/>
+        <attr name="pressedStrokeColor" format="color|reference"/>
+        <attr name="unableStrokeColor" format="color|reference"/>
+
+        <!--background color-->
+        <attr name="normalBackgroundColor" format="color|reference"/>
+        <attr name="pressedBackgroundColor" format="color|reference"/>
+        <attr name="unableBackgroundColor" format="color|reference"/>
+
+        <!--background radius-->
+        <attr name="radius" format="dimension|reference"/>
+        <attr name="IMRound" format="boolean|reference"/>
+
+        <!--animation duration-->
+        <attr name="animationDuration" format="integer|reference"/>
+
+    </declare-styleable>
+
+
+    <declare-styleable name="BubbleView">
+        <attr name="arrowWidth" format="dimension" />
+        <attr name="angle" format="dimension" />
+        <attr name="arrowHeight" format="dimension" />
+        <attr name="arrowPosition" format="dimension" />
+        <attr name="bubbleColor" format="color" />
+        <attr name="arrowLocation" format="enum">
+            <enum name="left" value="0x00" />
+            <enum name="right" value="0x01" />
+            <enum name="top" value="0x02" />
+            <enum name="bottom" value="0x03" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ArrowItemView">
+        <attr name="arrowItemTitle" format="string|reference"/>
+        <attr name="arrowItemTitleColor" format="color|reference"/>
+        <attr name="arrowItemTitleSize" format="dimension|reference"/>
+        <attr name="arrowItemContent" format="string|reference"/>
+        <attr name="arrowItemContentColor" format="color|reference"/>
+        <attr name="arrowItemContentSize" format="dimension|reference"/>
+        <attr name="arrowItemShowDivider" format="boolean"/>
+        <attr name="arrowItemShowArrow" format="boolean"/>
+        <attr name="arrowItemShowAvatar" format="boolean"/>
+        <attr name="arrowItemAvatarSrc" format="reference"/>
+        <attr name="arrowItemAvatarHeight" format="dimension|reference"/>
+        <attr name="arrowItemAvatarWidth" format="dimension|reference"/>
+    </declare-styleable>
+
+    <string-array name="side_bar_array">
+        <item>搜</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+        <item>I</item>
+        <item>J</item>
+        <item>K</item>
+        <item>L</item>
+        <item>M</item>
+        <item>N</item>
+        <item>O</item>
+        <item>P</item>
+        <item>Q</item>
+        <item>R</item>
+        <item>S</item>
+        <item>T</item>
+        <item>U</item>
+        <item>V</item>
+        <item>W</item>
+        <item>X</item>
+        <item>Y</item>
+        <item>Z</item>
+        <item>#</item>
+    </string-array>
+
+</resources>

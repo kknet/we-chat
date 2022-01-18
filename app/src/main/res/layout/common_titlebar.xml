@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <View android:layout_width="match_parent"
+        android:background="#fff"
+        android:visibility="gone"
+        android:layout_height="20dp"/>
+
+    <RelativeLayout
+        android:id="@+id/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff"
+        app:contentInsetStart="0dp">
+
+
+        <RelativeLayout
+            android:id="@+id/common_toolbar_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/image_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/em_back" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/common_toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:maxLength="10"
+            android:singleLine="true"
+            android:textColor="#333"
+            android:textSize="17sp" />
+
+        <ImageButton
+            android:id="@+id/plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="29dp"
+            android:background="#FFFFFF"
+            android:onClick="buttonTopRight"
+            android:src="@drawable/em_home_menu_add" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

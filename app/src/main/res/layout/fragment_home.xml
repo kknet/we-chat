@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/common_titlebar" />
+    <include layout="@layout/layout_search" />
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@drawable/main_list_divider_line"
+        android:dividerHeight="1.5px"
+        android:layout_marginBottom="50dp">
+    </ListView>
+</LinearLayout>

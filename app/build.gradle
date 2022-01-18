@@ -1,0 +1,96 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "xyz.mxd.wechat"
+        minSdkVersion 24
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility = 1.8
+        sourceCompatibility = 1.8
+    }
+    // 引入 t-im-client-2.1.3.v20220112-RELEASE后出现 More than one file was found with OS independent path 'test.txt' 错误； 加上如下代码 -》解决
+    packagingOptions {
+        exclude 'test.txt'
+    }
+}
+
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        outputFileName = "WeChat-${versionName}.apk"
+    }
+}
+
+// 配置依赖排除规则，排除所有该依赖
+configurations.implementation {
+    exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'], exclude: ['rxjava-2.1.16.jar'])
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.2'
+    implementation 'androidx.navigation:navigation-ui:2.3.2'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    // 定义任务栏配色
+    implementation 'com.githang:status-bar-compat:0.3'
+    // 引入 图片 选择器
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+    implementation "com.google.android.material:material:1.4.0"
+    implementation 'com.nbsp:materialfilepicker:1.9.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+    implementation 'com.google.android.material:material:1.4.0'                     // 引入弹窗 依赖
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'com.github.li-xiaojun:XPopup:2.5.18'                            // 引入弹窗
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'             // 引入 好友界面
+    implementation 'com.yanzhenjie:permission:2.0.3'                 // 动态获取相机权限
+    implementation 'com.github.yuzhiqiang1993:zxing:2.2.8'          // 扫一扫
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'  // 解决安卓4.4版本及以下的https握手异常问题
+//    implementation 'io.github.mxd888:t-im-client:2.1.6.v20220113-RELEASE'  // t-im-client-2.1.3.v20220112-RELEASE
+//    implementation 'cn.hutool:hutool-all:5.7.20'
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

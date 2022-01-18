@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#fff9f9f9">
+
+    <include layout="@layout/common_titlebar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_user"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <xyz.mxd.wechat.widget.EaseImageView
+            android:id="@+id/avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_head_default_right" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/message"
+            app:layout_constraintLeft_toRightOf="@id/avatar"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:textSize="18sp"
+            android:textColor="#ff333333"
+            tools:text="ss"/>
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/avatar"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="4dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:padding="7dp"
+            android:textColor="#ff999999"
+            android:textSize="14sp"
+            android:visibility="gone"
+            tools:text="ssdd"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_user_money"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_user"
+        app:layout_constraintBottom_toTopOf="@id/cl_common_set"
+        android:layout_marginTop="15dp">
+
+        <xyz.mxd.wechat.widget.ArrowItemView
+            android:id="@+id/item_common_money"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:background="@color/white"
+            app:arrowItemAvatarHeight="25dp"
+            app:arrowItemAvatarSrc="@drawable/d_set"
+            app:arrowItemAvatarWidth="25dp"
+            app:arrowItemShowAvatar="true"
+            app:arrowItemTitle="钱包"
+            app:arrowItemTitleSize="14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_common_set"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_user_money"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="15dp">
+
+        <xyz.mxd.wechat.widget.ArrowItemView
+            android:id="@+id/item_common_set"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/item_feedback"
+            app:arrowItemAvatarSrc="@drawable/d_set"
+            app:arrowItemShowAvatar="true"
+            app:arrowItemAvatarHeight="25dp"
+            app:arrowItemAvatarWidth="25dp"
+            app:arrowItemTitle="设置"
+            app:arrowItemTitleSize="14sp"
+            android:background="@color/white"/>
+
+        <xyz.mxd.wechat.widget.ArrowItemView
+            android:id="@+id/item_feedback"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_common_set"
+            app:layout_constraintBottom_toTopOf="@id/item_about_hx"
+            app:arrowItemAvatarSrc="@drawable/d_feedback"
+            app:arrowItemAvatarHeight="25dp"
+            app:arrowItemAvatarWidth="25dp"
+            app:arrowItemShowAvatar="true"
+            app:arrowItemTitle="意见反馈"
+            app:arrowItemTitleSize="14sp"
+            android:background="@color/white" />
+
+        <xyz.mxd.wechat.widget.ArrowItemView
+            android:id="@+id/item_about_hx"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_feedback"
+            app:layout_constraintBottom_toTopOf="@id/item_developer_set"
+            app:arrowItemAvatarSrc="@drawable/d_about_hx"
+            app:arrowItemAvatarHeight="25dp"
+            app:arrowItemAvatarWidth="25dp"
+            app:arrowItemShowAvatar="true"
+            app:arrowItemTitle="关于即时通信IM"
+            app:arrowItemTitleSize="14sp"
+            android:background="@color/white" />
+
+        <xyz.mxd.wechat.widget.ArrowItemView
+            android:id="@+id/item_developer_set"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_about_hx"
+            app:arrowItemAvatarSrc="@drawable/d_developer_set"
+            app:arrowItemAvatarHeight="25dp"
+            app:arrowItemAvatarWidth="25dp"
+            app:arrowItemShowAvatar="true"
+            app:arrowItemTitle="开发者服务"
+            app:arrowItemTitleSize="14sp"
+            android:background="@color/white" />
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:stateListAnimator="@null"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_developer_set"
+            android:layout_marginBottom="800dp"
+            android:layout_marginTop="30dp"
+            android:text="退出"
+            android:textSize="16sp"
+            android:textColor="#ffff2b2b"
+            android:background="@color/white" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

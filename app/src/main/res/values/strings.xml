@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">WeChat</string>
+    <string name="title_activity_main">WeChat</string>
+    <string name="title_home">会话</string>
+    <string name="title_friend">通讯录</string>
+    <string name="title_self">我</string>
+    <string name="about_im_version">即时通讯IM %1$s</string>
+    <string name="ease_search_text_hint">搜索</string>
+    <string name="webview_title">TIM内置浏览器</string>
+</resources>
