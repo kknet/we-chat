@@ -1,21 +1,38 @@
 package xyz.mxd.wechat;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.runtime.Permission;
+import com.yzq.zxinglibrary.android.CaptureActivity;
+import com.yzq.zxinglibrary.bean.ZxingConfig;
+import com.yzq.zxinglibrary.common.Constant;
+
 import org.tim.client.Options;
 import org.tim.client.TIMClient;
+import org.tim.client.intf.Callback;
 import org.tio.core.Node;
 import xyz.mxd.wechat.activity.LoginUserActivity;
+import xyz.mxd.wechat.activity.MainActivity;
 import xyz.mxd.wechat.activity.ReigisterActivity;
+import xyz.mxd.wechat.adapter.MyHandler;
 import xyz.mxd.wechat.tim.TIMMessageProcessor;
+import xyz.mxd.wechat.util.ToastUtils;
 
 
-public class Welcome extends Activity {
+public class Welcome extends AppCompatActivity {
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,12 +41,6 @@ public class Welcome extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.welcome); //设置布局
 //        StatusBarCompat.setStatusBarColor(this,0,false);
-
-        // 初始化
-        new Thread(() ->{
-            Options options = new Options(new Node("mixiaodong.xyz", 8888));
-            TIMClient.start(options, new TIMMessageProcessor());
-        }).start();
 
 
     }

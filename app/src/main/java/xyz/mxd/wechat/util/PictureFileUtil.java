@@ -1,14 +1,16 @@
 package xyz.mxd.wechat.util;
 
+import android.Manifest;
 import android.app.Activity;
 
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import xyz.mxd.wechat.R;
-
+import xyz.mxd.wechat.activity.MainActivity;
 
 
 public class PictureFileUtil {

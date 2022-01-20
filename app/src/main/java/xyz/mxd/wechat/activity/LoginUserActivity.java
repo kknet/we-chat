@@ -31,6 +31,7 @@ import java.util.Map;
 import xyz.mxd.wechat.R;
 import xyz.mxd.wechat.Welcome;
 import xyz.mxd.wechat.adapter.ChatAdapter;
+import xyz.mxd.wechat.dao.TIMSQLiteOpenHelper;
 import xyz.mxd.wechat.net.Request;
 import xyz.mxd.wechat.threadpool.TIMThreadPool;
 import xyz.mxd.wechat.tools.WorksSizeCheckUtil;
@@ -51,6 +52,7 @@ public class LoginUserActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_user); //设置布局
         /* 隐藏自带标题*/
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
@@ -148,6 +150,8 @@ public class LoginUserActivity extends AppCompatActivity{
             }, "/Login");
             boolean result = jsonObject.getBoolean("json");
             if (result) {
+                // 存下来，下次自动登录
+                TIMSQLiteOpenHelper.insertUser(number, password);
                 connectTIMServer(number, password);
                 Log.i("用户", "登录成功");
             } else {
@@ -178,7 +182,17 @@ public class LoginUserActivity extends AppCompatActivity{
 
             @Override
             public void fail() {
-                System.out.println("登陆失败");
+                ToastUtils.showToast("错误提示", "IM服务器登录失败，请重启APP", getApplicationContext(), new Callback() {
+                    @Override
+                    public void success() {
+
+                    }
+
+                    @Override
+                    public void fail() {
+
+                    }
+                });
             }
         });
     }

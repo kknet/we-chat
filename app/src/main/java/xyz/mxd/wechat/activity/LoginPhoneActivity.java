@@ -172,7 +172,17 @@ public class LoginPhoneActivity extends AppCompatActivity {
 
             @Override
             public void fail() {
-                System.out.println("登陆失败");
+                ToastUtils.showToast("错误提示", "IM服务器登录失败，请重启APP", getApplicationContext(), new Callback() {
+                    @Override
+                    public void success() {
+
+                    }
+
+                    @Override
+                    public void fail() {
+
+                    }
+                });
             }
         });
     }

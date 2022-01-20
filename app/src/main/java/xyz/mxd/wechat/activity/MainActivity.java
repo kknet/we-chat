@@ -1,6 +1,7 @@
 package xyz.mxd.wechat.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,12 +47,16 @@ public class MainActivity extends AppCompatActivity {
     public static List<Map<String, String>> data = new ArrayList<>();
     private MyHandler myhandler = new MyHandler();
     public static String number;
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = getApplicationContext();
         Intent intent = getIntent();
         number = intent.getStringExtra("weixin_number");
+//        TIMClient.getInstance().messageReq("15511090451");
+        TIMClient.getInstance().authReq();
         Thread thread1 = new Thread(() -> httpUrlConnPost(String.valueOf(number)));
         thread1.start();
         try {

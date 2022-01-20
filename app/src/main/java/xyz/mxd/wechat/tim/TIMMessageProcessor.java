@@ -23,30 +23,13 @@ public class TIMMessageProcessor implements MessageProcessor {
 
     @Override
     public void OnMessage(ChatBody body) {
-        final User[] from = new User[1];
-        TIMClient.getInstance().getUser().getFriends().forEach(user -> {
-            if (user.getUserId() == null) {
-                return;
-            }
-            if (user.getUserId().equals(body.getFrom())) {
-                from[0] = user;
-            }
-        });
+        User user = getUserById(body.getFrom());
         if (body.getCreateTime() == null) {
             // 同步回执消息，不用理会
             return;
         }
-        handlerMessage(body.getCreateTime(), from[0].getAvatar(), from[0].getNick(), body.getContent(), body.getFrom());
-        // 刷新
-        MyHandler handler = (MyHandler) TIMClient.getInstance().get("handler");
-        handler.sendEmptyMessage(1);
-        TIMClient.getInstance().set("content", body);
-        if (TIMClient.getInstance().getExtraMap().get(body.getFrom()) == null) {
-            TIMClient.getInstance().getExtraList().add(body);
-            return;
-        }
-        MyHandler handler1 = (MyHandler) TIMClient.getInstance().get(body.getFrom());
-        handler1.sendEmptyMessage(2);
+        handlerMessage(body.getCreateTime(), user.getAvatar(), user.getNick(), body.getContent(), body.getFrom());
+        handlerMessage(body);
     }
 
     @Override
@@ -58,12 +41,23 @@ public class TIMMessageProcessor implements MessageProcessor {
     @Override
     public void getMessageDataAfter(String data) {
 
+        System.out.println(data);
+
     }
 
     @Override
     public void getOnlineUserIdAfter(String ids) {
 
         System.out.println(ids);
+    }
+
+    @Override
+    public void ackTimeOut(Integer integer) {
+
+    }
+
+    @Override
+    public void connectException() {
     }
 
 
@@ -87,5 +81,30 @@ public class TIMMessageProcessor implements MessageProcessor {
             TIMClient.getInstance().getList().add(from);
             TIMClient.getInstance().getMap().put(from, messageMap);
         }
+        // 刷新
+        MyHandler handler = (MyHandler) TIMClient.getInstance().get("handler");
+        handler.sendEmptyMessage(1);
+    }
+
+    public static void handlerMessage(ChatBody body) {
+        TIMClient.getInstance().set("content", body);
+        if (TIMClient.getInstance().getExtraMap().get(body.getFrom()) == null) {
+            TIMClient.getInstance().getExtraList().add(body);
+            return;
+        }
+        MyHandler handler1 = (MyHandler) TIMClient.getInstance().get(body.getFrom());
+        handler1.sendEmptyMessage(2);
+    }
+    public static User getUserById(String userId) {
+        final User[] from = new User[1];
+        TIMClient.getInstance().getUser().getFriends().forEach(user -> {
+            if (user.getUserId() == null) {
+                return;
+            }
+            if (user.getUserId().equals(userId)) {
+                from[0] = user;
+            }
+        });
+        return from[0];
     }
 }

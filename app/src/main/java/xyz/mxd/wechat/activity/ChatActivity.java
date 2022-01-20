@@ -1,28 +1,43 @@
 package xyz.mxd.wechat.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaMetadataRetriever;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.bumptech.glide.Glide;
 import com.githang.statusbar.StatusBarCompat;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.yzq.zxinglibrary.common.Constant;
+
 import org.tim.client.TIMClient;
 import org.tim.common.packets.ChatBody;
 import org.tim.common.packets.User;
@@ -54,6 +69,7 @@ import xyz.mxd.wechat.util.FileUtils;
 import xyz.mxd.wechat.util.LogUtil;
 import xyz.mxd.wechat.util.PictureFileUtil;
 import xyz.mxd.wechat.util.RandomInt;
+import xyz.mxd.wechat.util.ToastUtils;
 import xyz.mxd.wechat.widget.IMStateButton;
 import xyz.mxd.wechat.widget.MediaManager;
 import xyz.mxd.wechat.widget.RecordButton;
@@ -258,6 +274,39 @@ public class ChatActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case GET_STORAGE_PERMISSION:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    openAlbum();
+                } else {
+                    Toast.makeText(this, "You denied the permission", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+        }
+    }
+
+
+
+    private void openAlbum() {
+        /*打开相册*/
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, Constant.REQUEST_IMAGE);
+    }
+
+    private void openVideo() {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_PICK);
+        intent.setType("video/*");
+        startActivityForResult(intent, Constant.REQUEST_IMAGE);
+    }
+    private static final int CHOOSE_PHOTO = 1;
+    private static final int GET_STORAGE_PERMISSION = 2;
     @OnClick({R.id.btn_send,R.id.rlPhoto,R.id.rlVideo,R.id.rlLocation,R.id.rlFile,R.id.image_left})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -266,10 +315,17 @@ public class ChatActivity extends AppCompatActivity implements SwipeRefreshLayou
                 mEtContent.setText("");
                 break;
             case R.id.rlPhoto:
-                PictureFileUtil.openGalleryPic(ChatActivity.this,REQUEST_CODE_IMAGE);
+
+                if (ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    //没有授权进行权限申请
+                    ActivityCompat.requestPermissions(ChatActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, GET_STORAGE_PERMISSION);}
+                else{
+                    openAlbum();
+                }
+
                 break;
             case R.id.rlVideo:
-                PictureFileUtil.openGalleryAudio(ChatActivity.this,REQUEST_CODE_VEDIO);
+                openVideo();
                 break;
             case R.id.rlFile:
                 PictureFileUtil.openFile(ChatActivity.this,REQUEST_CODE_FILE);
@@ -311,6 +367,21 @@ public class ChatActivity extends AppCompatActivity implements SwipeRefreshLayou
                         LogUtil.d("获取视频路径成功:"+  media.getPath());
                         sendVedioMessage(media);
                     }
+                    break;
+                case CHOOSE_PHOTO:
+                    //使用Glide来加载图片data.getData()得到图片的Uri
+//                    Glide.with(this).load(data.getData()).into(photo);
+                    Uri uri = data.getData();
+                    Cursor cursor = getContentResolver().query(uri, null, null,
+                            null, null);
+                    cursor.moveToFirst();
+                    // String imgNo = cursor.getString(0); // 图片编号
+                    String v_path = cursor.getString(1); // 图片文件路径
+                    String v_size = cursor.getString(2); // 图片大小
+                    String v_name = cursor.getString(3); // 图片文件名
+                    Log.i("v_path=",v_path);
+                    Log.i("v_size=", v_size);
+                    Log.i("v_name=",v_name);
                     break;
             }
         }
