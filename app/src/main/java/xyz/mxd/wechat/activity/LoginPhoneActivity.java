@@ -22,6 +22,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONObject;
 import org.tim.client.TIMClient;
+import org.tim.client.intf.Callback;
 import org.tim.common.packets.User;
 
 import java.util.ArrayList;
@@ -141,22 +142,39 @@ public class LoginPhoneActivity extends AppCompatActivity {
             }, "/Login");
             boolean result = jsonObject.getBoolean("json");
             if (result) {
-                TIMClient.getInstance().setUser(User.newBuilder()
-                        .nick("A信")
-                        .avatar("https://gitee.com/mxd_2022/smartboot/raw/master/images/user.jpg")
-                        .build());
-                TIMClient.getInstance().set("first", true);
-                TIMClient.getInstance().getUser().setUserId(phone);
-                TIMClient.getInstance().setExtraMap(new HashMap<>());
-                TIMClient.getInstance().setExtraList(new ArrayList<>());
-                myhandler.sendEmptyMessage(1);
+                connectTIMServer(phone, password);
+                Log.i("用户", "登录成功");
             } else {
                 myhandler.sendEmptyMessage(2);
+                Log.i("用户", "登录失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
             myhandler.sendEmptyMessage(2);
         }
+    }
+
+    private void connectTIMServer(String number, String pass) {
+        TIMClient.getInstance().login(number, pass, new Callback() {
+            @Override
+            public void success() {
+                TIMClient.getInstance().setUser(User.newBuilder()
+                        .nick("A信")
+                        .avatar("https://gitee.com/mxd_2022/smartboot/raw/master/images/user.jpg")
+                        .build());
+                TIMClient.getInstance().set("first", true);
+                TIMClient.getInstance().getUser().setUserId(number);
+                TIMClient.getInstance().setExtraMap(new HashMap<>());
+                TIMClient.getInstance().setExtraList(new ArrayList<>());
+                myhandler.sendEmptyMessage(1);
+
+            }
+
+            @Override
+            public void fail() {
+                System.out.println("登陆失败");
+            }
+        });
     }
 
     @SuppressLint("HandlerLeak")
@@ -168,6 +186,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
                 case 1:
                     ToastUtils.showMsg(getApplicationContext(), "登录成功");
                     Intent intent = new Intent (xyz.mxd.wechat.activity.LoginPhoneActivity.this, xyz.mxd.wechat.activity.MainActivity.class);
+                    intent.putExtra("weixin_number", LoginPhoneActivity.this.phone.getText().toString());
                     startActivity(intent);
                     xyz.mxd.wechat.activity.LoginPhoneActivity.this.finish();
                     break;
@@ -224,6 +243,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
             }
         }
     }
+
 
 }
 
